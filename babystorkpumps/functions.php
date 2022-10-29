@@ -180,7 +180,7 @@ function wp_register_scripts_styles()
 
 
 		wp_register_script('intlTelInput', get_template_directory_uri() . "/assets/intlTelInput/js/intlTelInput.js", array('jquery'));
-		wp_register_script('singup_form',  get_template_directory_uri() . "/templates/onestep-form/signup_form.js", array('jquery', 'intlTelInput'));
+		wp_register_script('singup_form',  get_template_directory_uri() . "/templates/onestep-form/signup_form.js", array('jquery', 'intlTelInput'), time());
 		wp_register_script('dmez-payer',  get_template_directory_uri() . "/templates/onestep-form/dmez-payer.js", array('jquery'));
 
 		/**

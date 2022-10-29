@@ -108,8 +108,8 @@ jQuery(document).ready(function($) {
         form_data.append('dodNumber', $("#dodNumber").val());			
         form_data.append('sponsorRelationship', $("#sponsorRelationship").val());
         form_data.append('receptionConfirmation', $("#receptionConfirmation").val());
-        form_data.append('productChoose', $("#productChoose select").val());
-        form_data.append('fbody', $("#fbody select").val());
+        form_data.append('productChoose', $("#productChoose select option:selected").val());
+        form_data.append('fooby', $('select[name="fooby"] option:selected').val());
         $.ajax({
             url: global_creiden.ajax_url,
             type: "POST",
@@ -356,12 +356,21 @@ jQuery(document).ready(function($) {
             $("#productChoose").show();
             //Bag might be empty but enable "No pouches"
             jQuery('select[name="fooby"]').children('option[value="-1"]').attr('disabled', false);
+            if (jQuery('#productChoose option:disabled').length == jQuery('#productChoose option').length ) {
+                jQuery('select[name="fooby"]').children('option[value="-1"]').attr('disabled', true);
+                if (jQuery('select[name="fooby"] option:selected').val() == '-1') {
+                    jQuery('select[name="fooby"] option:selected').removeAttr('selected');
+                }
+            }
         } else {
             //If pump is not selectable, then bag should not be empty
             $("#productReceived").show();
             $("#productChoose").hide();
             //bag should not be empty so "No pouches" should be disabled
             jQuery('select[name="fooby"]').children('option[value="-1"]').attr('disabled', true);
+            if (jQuery('select[name="fooby"] option:selected').val() == '-1') {
+                jQuery('select[name="fooby"] option:selected').removeAttr('selected');
+            }
         }
     });
     
